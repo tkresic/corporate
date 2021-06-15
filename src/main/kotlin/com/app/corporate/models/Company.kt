@@ -15,6 +15,10 @@ data class Company(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     var name: String,
+    var address: String,
+    var pidn: String,
+    var phone: String,
+    var inTaxSystem: Boolean,
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),

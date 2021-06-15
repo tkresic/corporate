@@ -12,17 +12,14 @@ import java.util.Optional
  */
 @Service
 class CompanyService(val db: CompanyRepository) {
-    fun all(): MutableIterable<Company> =
-        db.findAll()
-
     fun save(company: Company): Company =
         db.save(company)
 
-    fun read(id: Long): Optional<Company> =
-        db.findById(id)
+    fun read(): Optional<Company> =
+        db.findFirstByIdIsNotNullOrderByCreatedAtAsc()
 
-    fun update(id: Long, company: Company): ResponseEntity<Company?> {
-        val companyData: Optional<Company> = this.read(id)
+    fun update(company: Company): ResponseEntity<Company?> {
+        val companyData: Optional<Company> = this.read()
 
         if (!companyData.isPresent) {
             return ResponseEntity<Company?>(HttpStatus.NOT_FOUND)
@@ -31,10 +28,11 @@ class CompanyService(val db: CompanyRepository) {
         val updatedCompany: Company = companyData.get()
 
         updatedCompany.name = company.name
+        updatedCompany.address = company.address
+        updatedCompany.pidn = company.pidn
+        updatedCompany.phone = company.phone
+        updatedCompany.inTaxSystem = company.inTaxSystem
 
         return ResponseEntity<Company?>(this.save(updatedCompany), HttpStatus.OK)
     }
-
-    fun delete(id: Long) =
-        db.deleteById(id)
 }

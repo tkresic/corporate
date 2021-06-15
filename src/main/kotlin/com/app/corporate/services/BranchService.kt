@@ -12,9 +12,6 @@ import java.util.Optional
  */
 @Service
 class BranchService(val db: BranchRepository) {
-    fun all(): MutableIterable<Branch> =
-        db.findAll()
-
     fun save(branch: Branch): Branch =
         db.save(branch)
 
@@ -31,10 +28,10 @@ class BranchService(val db: BranchRepository) {
         val updatedBranch: Branch = branchData.get()
 
         updatedBranch.name = branch.name
+        updatedBranch.businessPlaceLabel = branch.businessPlaceLabel
+        updatedBranch.address = branch.address
+        updatedBranch.phone = branch.phone
 
         return ResponseEntity<Branch?>(this.save(updatedBranch), HttpStatus.OK)
     }
-
-    fun delete(id: Long) =
-        db.deleteById(id)
 }

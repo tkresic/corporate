@@ -15,6 +15,9 @@ data class Branch(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     var name: String,
+    var businessPlaceLabel: Long,
+    var address: String,
+    var phone: String,
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),

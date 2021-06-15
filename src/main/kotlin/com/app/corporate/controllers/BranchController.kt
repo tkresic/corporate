@@ -12,14 +12,6 @@ import java.util.Optional
 @RestController
 @RequestMapping("/api/branches")
 class BranchController(val service: BranchService) {
-    @GetMapping
-    fun index(): MutableIterable<Branch> =
-        service.all()
-
-    @PostMapping
-    fun create(@RequestBody branch: Branch) =
-        service.save(branch)
-
     @GetMapping("/{id}")
     fun read(@PathVariable id: Long): Optional<Branch> =
         service.read(id)
@@ -27,8 +19,4 @@ class BranchController(val service: BranchService) {
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody branch: Branch): ResponseEntity<Branch?> =
         service.update(id, branch);
-
-    @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) =
-        service.delete(id)
 }

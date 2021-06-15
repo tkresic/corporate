@@ -13,22 +13,10 @@ import java.util.Optional
 @RequestMapping("/api/company")
 class CompanyController(val service: CompanyService) {
     @GetMapping
-    fun index(): MutableIterable<Company> =
-        service.all()
+    fun read(): Optional<Company> =
+        service.read()
 
-    @PostMapping
-    fun create(@RequestBody company: Company) =
-        service.save(company)
-
-    @GetMapping("/{id}")
-    fun read(@PathVariable id: Long): Optional<Company> =
-        service.read(id)
-
-    @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody company: Company): ResponseEntity<Company?> =
-        service.update(id, company);
-
-    @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) =
-        service.delete(id)
+    @PutMapping
+    fun update(@RequestBody company: Company): ResponseEntity<Company?> =
+        service.update(company);
 }

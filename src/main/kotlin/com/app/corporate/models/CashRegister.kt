@@ -14,7 +14,10 @@ data class CashRegister(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
-    var name: String,
+    var label: Long,
+    @ManyToOne
+    @JoinColumn(name="branch_id")
+    var branch: Branch?,
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),
