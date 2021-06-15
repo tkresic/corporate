@@ -18,7 +18,6 @@ data class Company(
     var address: String,
     var pidn: String,
     var phone: String,
-    var inTaxSystem: Boolean,
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),

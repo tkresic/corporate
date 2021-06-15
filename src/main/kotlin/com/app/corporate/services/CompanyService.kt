@@ -31,7 +31,6 @@ class CompanyService(val db: CompanyRepository) {
         updatedCompany.address = company.address
         updatedCompany.pidn = company.pidn
         updatedCompany.phone = company.phone
-        updatedCompany.inTaxSystem = company.inTaxSystem
 
         return ResponseEntity<Company?>(this.save(updatedCompany), HttpStatus.OK)
     }
