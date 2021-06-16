@@ -31,7 +31,7 @@ class SwaggerConfig {
         val contact = Contact("Toni Krešić", "https://github.com/tkresic", "tonikresic1997@gmail.com")
         return ApiInfoBuilder()
             .title("Corporate API")
-            .description("List of available corporate endpoints")
+            .description("Lista dostupnih resursa")
             .version("0.1.0")
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
