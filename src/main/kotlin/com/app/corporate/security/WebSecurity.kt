@@ -19,7 +19,9 @@ class WebSecurity : WebSecurityConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
+        http.cors()
+            .and()
+            .authorizeRequests()
             .antMatchers("/", "/swagger-ui/", "/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs", "/webjars/**")
             .permitAll()
             .anyRequest()
