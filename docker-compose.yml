@@ -8,15 +8,15 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - corporate_db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/corporate
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://corporate_db:5432/corporate
       - SPRING_DATASOURCE_USERNAME=corporate
       - SPRING_DATASOURCE_PASSWORD=corporate
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
-  db:
-    image: 'postgres:13.1-alpine'
+  corporate_db:
+    image: postgres:12.2
     environment:
       - POSTGRES_USER=corporate
       - POSTGRES_PASSWORD=corporate
