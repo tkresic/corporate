@@ -52,7 +52,7 @@ class DatabaseSeeder(
         if (cashRegister.size <= 0) {
             cashRegisterRepository.save(
                 CashRegister(
-                    id = 1,
+                    id = "2072d31b-3e3e-4812-a378-aeedef596b98",
                     branch = branch[0],
                     label = 1
                 )

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/branches")
 class BranchController(val service: BranchService) {
     @GetMapping("/by-cash-register/{cashRegisterId}")
-    fun read(@PathVariable cashRegisterId: Long): ResponseEntity<Branch?> =
+    fun read(@PathVariable cashRegisterId: String): ResponseEntity<Branch?> =
         service.byCashRegister(cashRegisterId)
 
     @PutMapping("/{id}")

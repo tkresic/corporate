@@ -12,8 +12,7 @@ import javax.persistence.*
 @Table(name = "cash_registers")
 data class CashRegister(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: String,
     var label: Long,
     @ManyToOne
     @JoinColumn(name="branch_id")

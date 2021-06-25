@@ -10,6 +10,6 @@ import java.util.Optional
  */
 @Service
 class CashRegisterService(val db: CashRegisterRepository) {
-    fun read(id: Long): Optional<CashRegister> =
+    fun read(id: String): Optional<CashRegister> =
         db.findById(id)
 }

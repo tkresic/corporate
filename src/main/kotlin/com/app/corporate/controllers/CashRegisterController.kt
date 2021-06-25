@@ -12,6 +12,6 @@ import java.util.Optional
 @RequestMapping("/api/cash-registers")
 class CashRegisterController(val service: CashRegisterService) {
     @GetMapping("/{id}")
-    fun read(@PathVariable id: Long): Optional<CashRegister> =
+    fun read(@PathVariable id: String): Optional<CashRegister> =
         service.read(id)
 }

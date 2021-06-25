@@ -24,7 +24,7 @@ class BranchService(
     fun read(id: Long): Optional<Branch> =
         branchDb.findById(id)
 
-    fun byCashRegister(cashRegisterId: Long): ResponseEntity<Branch?> {
+    fun byCashRegister(cashRegisterId: String): ResponseEntity<Branch?> {
         val cashRegisterData: Optional<CashRegister> = cashRegisterDb.findById(cashRegisterId)
         if (!cashRegisterData.isPresent) {
             return ResponseEntity<Branch?>(HttpStatus.NOT_FOUND)
