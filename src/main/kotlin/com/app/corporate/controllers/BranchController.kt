@@ -4,7 +4,6 @@ import com.app.corporate.models.Branch
 import com.app.corporate.services.BranchService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.Optional
 
 /**
  * Branch controller for CRUD methods.
@@ -12,9 +11,9 @@ import java.util.Optional
 @RestController
 @RequestMapping("/api/branches")
 class BranchController(val service: BranchService) {
-    @GetMapping("/{id}")
-    fun read(@PathVariable id: Long): Optional<Branch> =
-        service.read(id)
+    @GetMapping("/by-cash-register/{cashRegisterId}")
+    fun read(@PathVariable cashRegisterId: Long): ResponseEntity<Branch?> =
+        service.byCashRegister(cashRegisterId)
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody branch: Branch): ResponseEntity<Branch?> =

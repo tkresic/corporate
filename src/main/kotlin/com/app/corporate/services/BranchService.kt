@@ -1,7 +1,9 @@
 package com.app.corporate.services
 
 import com.app.corporate.models.Branch
+import com.app.corporate.models.CashRegister
 import com.app.corporate.repositories.BranchRepository
+import com.app.corporate.repositories.CashRegisterRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -11,12 +13,25 @@ import java.util.Optional
  * Branch service.
  */
 @Service
-class BranchService(val db: BranchRepository) {
+class BranchService(
+    val branchDb: BranchRepository,
+    val cashRegisterDb: CashRegisterRepository
+)
+{
     fun save(branch: Branch): Branch =
-        db.save(branch)
+        branchDb.save(branch)
 
     fun read(id: Long): Optional<Branch> =
-        db.findById(id)
+        branchDb.findById(id)
+
+    fun byCashRegister(cashRegisterId: Long): ResponseEntity<Branch?> {
+        val cashRegisterData: Optional<CashRegister> = cashRegisterDb.findById(cashRegisterId)
+        if (!cashRegisterData.isPresent) {
+            return ResponseEntity<Branch?>(HttpStatus.NOT_FOUND)
+        }
+        val data: CashRegister = cashRegisterData.get()
+        return ResponseEntity<Branch?>(data.branch, HttpStatus.OK)
+    }
 
     fun update(id: Long, branch: Branch): ResponseEntity<Branch?> {
         val branchData: Optional<Branch> = this.read(id)
