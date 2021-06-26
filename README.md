@@ -2,6 +2,10 @@
 
 One of the microservices that supports the [desktop cash register application in Flutter](https://github.com/tkresic/app). Docker image can be found [here](https://hub.docker.com/repository/docker/tkresic/corporate).
 
+### Quickstart
+
+`docker-compose up`
+
 ### Runs the microservice as a Spring Boot application
 
 `./gradlew bootRun`
